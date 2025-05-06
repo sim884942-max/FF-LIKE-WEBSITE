@@ -1,0 +1,91 @@
+/* Base Styles */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #181818; /* Dark background */
+    color: #fff;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .container {
+    background: #222;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    width: 300px;
+    text-align: center;
+  }
+  
+  input, button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #555;
+    font-size: 16px;
+  }
+  
+  button {
+    background-color: #e74c3c; /* Red button */
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #c0392b;
+  }
+  
+  /* SUPPORT Button Styles */
+  #supportButton {
+    background-color: #3498db; /* Blue button for support */
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  #supportButton:hover {
+    background-color: #2980b9; /* Darker blue when hovered */
+  }
+  
+  /* Response Box Styles */
+  .response-box {
+    margin-top: 20px;
+    text-align: left;
+    background: #333;
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
+  }
+  
+  .response-box div {
+    margin: 5px 0;
+    font-size: 14px;
+  }
+  
+  /* Watermark Styles */
+  .watermark-left {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    font-size: 40px; /* Increase font size for watermark */
+    color: red;
+    font-weight: bold;
+    opacity: 0.9; /* Make watermark more visible */
+  }
+  
+  .watermark-right {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 40px; /* Increase font size for watermark */
+    color: red; /* Red text for watermark */
+    font-weight: bold;
+    opacity: 0.9; /* Make watermark more visible */
+  }
+  

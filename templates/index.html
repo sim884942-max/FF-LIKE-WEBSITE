@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>X1LITE LIKE BOT</title>  <!-- WEB TITLE -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <div class="container">
+    <h2>X1LITE LIKE BOT</h2>
+    <form id="likeForm">
+      <input type="text" id="uid" placeholder="Enter UID" required />
+      <button type="submit">Like</button>
+    </form>
+
+    <div class="response-box" id="responseBox">
+      <h3>Like Response</h3>
+      <div id="responseContent">Loading...</div>
+    </div>
+
+    <!-- SUPPORT Button -->
+    <button id="supportButton" onclick="window.location.href='your discord server or any link'">SUPPORT</button>
+  </div>
+
+  <!-- Watermark elements -->
+  <div class="watermark-left"> <\> Abdullah Arefin</div>
+  <div class="watermark-right"> <\> API Credit X1LITE</div>
+
+  <script>
+    document.getElementById('likeForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const uid = document.getElementById('uid').value.trim();
+      const responseBox = document.getElementById('responseBox');
+      const responseContent = document.getElementById('responseContent');
+
+      if (!uid) {
+        alert('Please enter a UID.');
+        return;
+      }
+
+      responseBox.style.display = 'block';
+      responseContent.innerHTML = 'Processing...';
+
+      // Send data to the backend
+      fetch('/like', {
+        method: 'POST',
+        body: new URLSearchParams({ 'uid': uid }),
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.error) {
+            responseContent.innerHTML = `<span style="color:red;">${data.error}</span>`;
+          } else {
+            responseContent.innerHTML = `
+              <div><strong>Player:</strong> ${data.PlayerNickname || 'Unknown'}</div>
+              <div><strong>UID:</strong> ${data.UID || 'Unknown'}</div>
+              <div><strong>Likes Before:</strong> ${data.LikesbeforeCommand ?? 'N/A'}</div>
+              <div><strong>Likes After:</strong> ${data.LikesafterCommand ?? 'N/A'}</div>
+              <div><strong>Likes Given by API:</strong> ${data.LikesGivenByAPI ?? 'N/A'}</div>
+              <div><strong>Status Code:</strong> ${data.status ?? 'Unknown'}</div>
+            `;
+          }
+        })
+        .catch(error => {
+          responseContent.innerHTML = `<span style="color:red;">Error contacting the server. Please try again later.</span>`;
+          console.error('Error:', error);
+        });
+    });
+  </script>
+</body>
+</html>
