@@ -15,7 +15,7 @@ def like():
         return jsonify({'error': 'UID is required'})
 
     # Prepare the API request URL
-    api_url = f'api here' # your ff like api
+    api_url = f'https://lordlike.onrender.com/like?uid={uid}&region={region}' # your ff like api
 
     try:
         response = requests.get(api_url)
